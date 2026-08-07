@@ -1,27 +1,25 @@
-schemaVersion: "2"
-kind: sandbox
+schemaVersion: "1"
+kind: agent
 name: muse-code
 displayName: Muse Code
 description: Run Meta's Muse Code terminal coding agent inside a Docker Sandbox.
 
-sandbox:
+agent:
   image: "docker/sandbox-templates:shell-docker"
-  entrypoint: [muse]
+  entrypoint:
+    run:
+      - muse
 
-agentInstructions:
-  filename: AGENTS.md
+network:
+  allowedDomains:
+    # Installer/docs, sign-in, launcher/updates, and model API.
+    - "dev.meta.ai:443"
+    - "auth.meta.com:443"
+    - "api.meta.ai:443"
+    # The launcher downloads platform binaries from Meta's CDN.
+    - "lookaside.facebook.com:443"
 
-permissions:
-  network:
-    allow:
-      # Installer/docs, sign-in, launcher/updates, and model API.
-      - "dev.meta.ai:443"
-      - "auth.meta.com:443"
-      - "api.meta.ai:443"
-      # The launcher downloads platform binaries from Meta's CDN.
-      - "lookaside.facebook.com:443"
-
-setup:
+commands:
   install:
     - command: "curl -fsSL https://dev.meta.ai/install.sh | bash"
       user: "1000"

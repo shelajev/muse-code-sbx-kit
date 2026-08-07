@@ -16,7 +16,7 @@ The kit installs the official `muse` binary and permits only the Meta services n
 Run the published kit directly from Docker Hub:
 
 ```bash
-sbx run --kit docker.io/shelajev/muse-code-sbx-kit:latest muse-code .
+sbx run --kit docker.io/olegselajev241/muse-code-sbx-kit:latest muse-code .
 ```
 
 Docker Hub is an allowed kit source by default. To run the kit directly from GitHub instead, allow this repository as a source once:
@@ -36,7 +36,7 @@ Create a sandbox that you can reattach to later:
 
 ```bash
 sbx create --name muse-current \
-  --kit docker.io/shelajev/muse-code-sbx-kit:latest muse-code .
+  --kit docker.io/olegselajev241/muse-code-sbx-kit:latest muse-code .
 
 sbx run muse-current
 ```
@@ -84,7 +84,7 @@ sbx exec muse-current -- sh -lc 'MUSE_NO_AUTO_UPDATE=1 muse --version'
 
 ## Publishing
 
-Every commit pushed to `main` is validated and published as `docker.io/shelajev/muse-code-sbx-kit:latest`. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
+Every commit pushed to `main` is validated and published as `docker.io/olegselajev241/muse-code-sbx-kit:latest`. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
 
 ## License
 

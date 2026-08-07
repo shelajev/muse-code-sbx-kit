@@ -13,15 +13,16 @@ The kit installs the official `muse` binary and permits only the Meta services n
 
 ## Quick start
 
-Allow this GitHub repository as a kit source once:
+Run the published kit directly from Docker Hub:
+
+```bash
+sbx run --kit docker.io/shelajev/muse-code-sbx-kit:latest muse-code .
+```
+
+Docker Hub is an allowed kit source by default. To run the kit directly from GitHub instead, allow this repository as a source once:
 
 ```bash
 sbx settings set kit.allowedSources '["docker.io/", "github.com/shelajev/"]'
-```
-
-Then create and enter a sandbox for the current directory:
-
-```bash
 sbx run --kit git+https://github.com/shelajev/muse-code-sbx-kit.git muse-code .
 ```
 
@@ -35,7 +36,7 @@ Create a sandbox that you can reattach to later:
 
 ```bash
 sbx create --name muse-current \
-  --kit git+https://github.com/shelajev/muse-code-sbx-kit.git muse-code .
+  --kit docker.io/shelajev/muse-code-sbx-kit:latest muse-code .
 
 sbx run muse-current
 ```
@@ -80,6 +81,13 @@ For a live smoke test after creating a named sandbox:
 ```bash
 sbx exec muse-current -- sh -lc 'MUSE_NO_AUTO_UPDATE=1 muse --version'
 ```
+
+## Publishing
+
+The GitHub Actions workflow publishes versioned and `latest` OCI kit artifacts to `docker.io/shelajev/muse-code-sbx-kit`. Add a Docker Hub access token with read/write permission as the `DOCKERHUB_TOKEN` repository secret, then either:
+
+- create and push a semantic version tag such as `v0.1.0`; or
+- run **Publish kit to Docker Hub** manually and enter a version.
 
 ## License
 

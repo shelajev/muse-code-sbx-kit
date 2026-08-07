@@ -84,10 +84,7 @@ sbx exec muse-current -- sh -lc 'MUSE_NO_AUTO_UPDATE=1 muse --version'
 
 ## Publishing
 
-The GitHub Actions workflow publishes versioned and `latest` OCI kit artifacts to `docker.io/shelajev/muse-code-sbx-kit`. Add a Docker Hub access token with read/write permission as the `DOCKERHUB_TOKEN` repository secret, then either:
-
-- create and push a semantic version tag such as `v0.1.0`; or
-- run **Publish kit to Docker Hub** manually and enter a version.
+Every commit pushed to `main` is validated and published as `docker.io/shelajev/muse-code-sbx-kit:latest`. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
 
 ## License
 

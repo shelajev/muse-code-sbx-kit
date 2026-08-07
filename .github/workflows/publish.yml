@@ -2,14 +2,9 @@ name: Publish kit to Docker Hub
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      version:
-        description: Version tag to publish (for example, 0.1.0)
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -39,27 +34,6 @@ jobs:
         with:
           username: shelajev
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Resolve version
-        id: version
-        env:
-          DISPATCH_VERSION: ${{ inputs.version }}
-        run: |
-          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
-            version="${GITHUB_REF_NAME#v}"
-          else
-            version="${DISPATCH_VERSION#v}"
-          fi
-          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Invalid version: $version" >&2
-            exit 1
-          fi
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-
-      - name: Publish version
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-        run: sbx kit push . "$KIT_REPOSITORY:$VERSION"
 
       - name: Publish latest
         run: sbx kit push . "$KIT_REPOSITORY:latest"

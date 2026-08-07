@@ -8,8 +8,28 @@ The kit installs the official `muse` binary and permits only the Meta services n
 
 ## Prerequisites
 
-- Docker Desktop with [Docker Sandboxes](https://docs.docker.com/ai/sandboxes/) and kit support
+- The standalone [`sbx` CLI](https://docs.docker.com/ai/sandboxes/get-started/)
 - Access to Muse Code (currently beta)
+
+On macOS, install `sbx` from Docker's Homebrew tap and sign in:
+
+```bash
+brew trust docker/tap
+brew install docker/tap/sbx
+sbx login
+```
+
+On Ubuntu, install it from Docker's apt repository:
+
+```bash
+curl -fsSL https://get.docker.com | sudo REPO_ONLY=1 sh
+sudo apt-get install docker-sbx
+sudo usermod -aG kvm "$USER"
+newgrp kvm
+sbx login
+```
+
+See Docker's [Get started with Docker Sandboxes](https://docs.docker.com/ai/sandboxes/get-started/) page for supported operating systems, hardware requirements, Windows installation, and manual downloads.
 
 ## Quick start
 

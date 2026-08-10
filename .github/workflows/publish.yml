@@ -36,4 +36,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Publish latest
-        run: sbx kit push . "$KIT_REPOSITORY:latest"
+        run: ./scripts/push.sh "$KIT_REPOSITORY:latest"

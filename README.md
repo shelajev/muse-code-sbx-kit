@@ -8,7 +8,7 @@ The kit installs the official `muse` binary and permits only the Meta services n
 
 ## Prerequisites
 
-- The standalone [`sbx` CLI](https://docs.docker.com/ai/sandboxes/get-started/)
+- The standalone [`sbx` CLI](https://docs.docker.com/ai/sandboxes/get-started/) with kit-spec V2 support (Docker Sandboxes 0.38 or later)
 - Access to Muse Code (currently beta)
 
 On macOS, install `sbx` from Docker's Homebrew tap and sign in:
@@ -91,9 +91,9 @@ Your coding workflow may need additional hosts, such as GitHub or package regist
 ```bash
 sbx kit validate .
 sbx kit inspect .
-sbx kit pack . -o /tmp/muse-code-sbx-kit.zip
+./scripts/pack.sh /tmp/muse-code-sbx-kit.zip
 sbx kit validate /tmp/muse-code-sbx-kit.zip
-bash -n run.sh
+bash -n run.sh scripts/*.sh
 ```
 
 For a live smoke test after creating a named sandbox:
@@ -104,7 +104,7 @@ sbx exec muse-current -- sh -lc 'MUSE_NO_AUTO_UPDATE=1 muse --version'
 
 ## Publishing
 
-Every commit pushed to `main` is validated and published as `docker.io/olegselajev241/muse-code-sbx-kit:latest`. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
+Every commit pushed to `main` is validated and published as `docker.io/olegselajev241/muse-code-sbx-kit:latest`. The workflow uses `scripts/push.sh`, which stages only `spec.yaml` and the optional `files/` tree before publishing; repository metadata such as `.git/` is never included. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
 
 ## License
 

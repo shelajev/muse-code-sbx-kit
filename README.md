@@ -104,7 +104,7 @@ sbx exec muse-current -- sh -lc 'MUSE_NO_AUTO_UPDATE=1 muse --version'
 
 ## Publishing
 
-Every commit pushed to `main` is validated and published as `docker.io/olegselajev241/muse-code-sbx-kit:latest`. The workflow uses `scripts/push.sh`, which stages only `spec.yaml` and the optional `files/` tree before publishing; repository metadata such as `.git/` is never included. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
+Every commit pushed to `main` is validated and published as `docker.io/olegselajev241/muse-code-sbx-kit:latest` and `docker.io/olegselajev241/muse-code-sbx-kit:v2`. The workflow uses `scripts/push.sh`, which stages only `spec.yaml` and the optional `files/` tree before publishing; repository metadata such as `.git/` is never included. The workflow can also be run manually. It requires a Docker Hub access token with read/write permission in the `DOCKERHUB_TOKEN` repository secret.
 
 ## License
 

@@ -35,5 +35,7 @@ jobs:
           username: olegselajev241
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Publish latest
-        run: ./scripts/push.sh "$KIT_REPOSITORY:latest"
+      - name: Publish latest and V2
+        run: |
+          ./scripts/push.sh "$KIT_REPOSITORY:latest"
+          ./scripts/push.sh "$KIT_REPOSITORY:v2"
